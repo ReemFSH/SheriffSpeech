@@ -1,4 +1,4 @@
-# 🛡️ SEC619 — LLM-Driven Digital Threat Detection in Spoken Communication
+# 🛡️ SheriffSpeech: LLM-Driven Digital Threat Detection in Spoken Communication
 
 > **Graduation Project · KFUPM · Term 242**
 > Reem Fuad Shareef · Supervised by Dr. Waleed Algobi
@@ -254,7 +254,6 @@ Actual: SAFE          FP = 0      TN = 50
 
 **Reem Fuad Shareef**
 King Fahd University of Petroleum and Minerals (KFUPM)
-📧 g202408960@kfupm.edu.sa
 
 **Supervisor:** Dr. Waleed Algobi
 **Course:** SEC619 — Graduation Project · Term 242
