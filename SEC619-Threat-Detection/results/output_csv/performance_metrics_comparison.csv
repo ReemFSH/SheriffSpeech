@@ -1,0 +1,18 @@
+Metric,System_A (%),System_B (%),Delta,Winner
+Accuracy,96.00,99.00,+3.00,System B
+Precision — Unsafe,92.59,100.00,+7.41,System B
+Recall — Unsafe,100.00,98.00,-2.00,System A
+F1 — Unsafe,96.15,98.99,+2.84,System B
+Precision — Safe,100.00,98.04,-1.96,System A
+Recall — Safe,92.00,100.00,+8.00,System B
+F1 — Safe,95.83,99.01,+3.18,System B
+Macro-avg F1,95.99,99.00,+3.01,System B
+True Positives (TP),50,49,-1,System A
+True Negatives (TN),46,50,+4,System B
+False Positives (FP),4,0,-4,System B
+False Negatives (FN),0,1,+1,System A
+--- LATENCY (corrected) ---,whisper+guard only,whisper+SER+guard,SER overhead,—
+Latency — ASR Whisper,22.54s,15.92s,+-6.62s,—
+Latency — SER SpeechBrain,0.00s (excluded),22.07s,+22.07s,—
+Latency — LLM Qwen3Guard,0.94s,0.84s,+-0.10s,—
+Latency — End-to-End Total,23.48s,38.83s,+15.35s,—

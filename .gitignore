@@ -1,0 +1,59 @@
+# ============================================================
+# SEC619 — .gitignore
+# ============================================================
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Virtual Environments ─────────────────────────────────────
+venv/
+env/
+.venv/
+.env/
+ENV/
+
+# ── Jupyter Notebooks (checkpoints) ─────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Audio Files (large — use Git LFS or external storage) ────
+# Uncomment the line below to exclude all WAV files from the repo.
+# Large audio datasets should be hosted on Hugging Face Datasets or Zenodo.
+# *.wav
+
+# ── Model Weights & Cache ────────────────────────────────────
+*.pt
+*.pth
+*.bin
+*.safetensors
+models/
+.cache/
+huggingface/
+
+# ── OS & IDE ─────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+*.code-workspace
+
+# ── Logs & Temp ──────────────────────────────────────────────
+*.log
+*.tmp
+*.bak
+temp/
+tmp/
+
+# ── Sensitive / Credentials ──────────────────────────────────
+.env
+secrets.json
+api_keys.txt

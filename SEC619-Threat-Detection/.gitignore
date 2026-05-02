@@ -1,0 +1,68 @@
+# ============================================================================
+# SEC619 — .gitignore
+# ============================================================================
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Virtual Environments ─────────────────────────────────────────────────────
+venv/
+env/
+.venv/
+.env/
+ENV/
+
+# ── Jupyter Notebook Checkpoints ────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Audio Files (large — store externally) ───────────────────────────────────
+# WAV files can be large (>100MB total).
+# Uncomment to exclude from git and host on Hugging Face Datasets instead:
+# *.wav
+
+# ── Model Weights & HuggingFace Cache ────────────────────────────────────────
+*.pt
+*.pth
+*.bin
+*.safetensors
+models/
+.cache/
+huggingface/
+
+# ── OS & IDE ─────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+*.code-workspace
+
+# ── Logs & Temp ──────────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.bak
+temp/
+tmp/
+
+# ── Credentials & Secrets ────────────────────────────────────────────────────
+.env
+secrets.json
+api_keys.txt
+
+# ── Per-file JSON Bundles (large — optional to include) ──────────────────────
+# These are detailed per-file pipeline output bundles.
+# Comment out the line below to INCLUDE them in git:
+results/output_csv/results_json/
+
+# ── Demo Videos (too large for git — host on Google Drive / YouTube) ─────────
+# Upload demo MP4s externally and link them in demo/README.md instead.
+demo/*.mp4
+*.mp4

@@ -1,0 +1,47 @@
+# ============================================================================
+# SEC619 — LLM-Driven Digital Threat Detection in Spoken Communication
+# Python Requirements
+# ============================================================================
+# Install all dependencies:
+#   pip install -r requirements.txt
+#
+# GPU Note:
+#   Whisper, SpeechBrain, and Qwen3Guard run on separate GPU servers via REST
+#   APIs. The pipeline client machine only needs the packages below — no GPU
+#   is required on the client.
+#   If running models locally, also install: torch>=2.0.0 with CUDA support.
+# ============================================================================
+
+# ── Pipeline Client (pipeline/pipeline.py) ───────────────────────────────────
+openai>=1.12.0              # OpenAI-compatible client → Whisper vLLM endpoint
+requests>=2.31.0            # HTTP calls to SpeechBrain and Qwen3Guard APIs
+tqdm>=4.65.0                # Progress bar during batch processing
+
+# ── Evaluation Scripts (evaluation/) ─────────────────────────────────────────
+pandas>=2.0.0               # CSV loading, DataFrame operations
+numpy>=1.24.0               # Numerical computations (latency stats)
+matplotlib>=3.7.0           # Chart generation (visualize_results.py)
+seaborn>=0.12.0             # Confusion matrix heatmaps (optional — graceful fallback)
+
+# ── SpeechBrain API Server (servers/speechbrain_api.py) ──────────────────────
+# Install on GPU Server A only (not required on pipeline client)
+fastapi>=0.110.0            # REST API framework
+uvicorn>=0.27.0             # ASGI server for FastAPI
+speechbrain>=1.0.0          # SpeechBrain emotion classifier (wav2vec2-IEMOCAP)
+torch>=2.0.0                # PyTorch backend for SpeechBrain (CUDA recommended)
+torchaudio>=2.0.0           # Audio loading for SpeechBrain
+
+# ── Dataset Builder (dataset/) ───────────────────────────────────────────────
+openpyxl>=3.1.2             # Excel (.xlsx) workbook generation (build_dataset.py)
+edge-tts>=6.1.9             # Microsoft Edge TTS (tts_generator.py)
+aiohttp>=3.9.0              # Async HTTP used by edge-tts
+
+# ── Optional: Local Whisper Inference ────────────────────────────────────────
+# Uncomment if running Whisper locally instead of via vLLM server:
+# openai-whisper>=20231117
+
+# ── Optional: Qwen3Guard Local Inference ─────────────────────────────────────
+# Uncomment if running Qwen3Guard locally:
+# transformers>=4.40.0
+# accelerate>=0.27.0
+# sentencepiece>=0.1.99

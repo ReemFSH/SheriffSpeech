@@ -1,0 +1,119 @@
+█████████████████████████████████████████████████████████████████
+  SYSTEM A vs SYSTEM B — COMPARISON ANALYSIS REPORT (CORRECTED LATENCY)
+  Dataset : 100 audio samples (50 Unsafe / 50 Safe)
+  Generated: 2026-04-25 13:38:47
+█████████████████████████████████████████████████████████████████
+
+=================================================================
+  1. OVERVIEW
+=================================================================
+  System A (Baseline) : Whisper + Qwen3Guard (text-only, no SpeechBrain fusion)
+  System B (Fusion)   : Whisper + SpeechBrain + Fusion Layer + Qwen3Guard
+  Total samples       : 100
+
+  LATENCY CORRECTION APPLIED:
+  System A corrected total = Whisper + Qwen3Guard
+    (SpeechBrain ran during System A's recording run but its output was
+     discarded — it is excluded from System A's latency budget.)
+  System B corrected total = Whisper + SpeechBrain + Qwen3Guard
+    (All three stages contribute to the final decision.)
+  The raw total_seconds in both CSVs are NOT used for comparison because
+  they reflect different server-warmup conditions between the two runs.
+
+=================================================================
+  2. PERFORMANCE METRICS COMPARISON
+=================================================================
+
+  Metric                     System A   System B    Delta  Result
+  -----------------------------------------------------------------
+  Accuracy                       96.0       99.0 +    3.0  ▲ Better
+  Precision — Unsafe             92.6      100.0 +    7.4  ▲ Better
+  Recall — Unsafe               100.0       98.0    -2.0  ▼ Worse
+  F1 — Unsafe                    96.2       99.0 +    2.8  ▲ Better
+  Precision — Safe              100.0       98.0    -2.0  ▼ Worse
+  Recall — Safe                  92.0      100.0 +    8.0  ▲ Better
+  F1 — Safe                      95.8       99.0 +    3.2  ▲ Better
+  Macro-avg F1                   96.0       99.0 +    3.0  ▲ Better
+  -----------------------------------------------------------------
+  TP                               50         49       -1
+  TN                               46         50 +       4
+  FP                                4          0       -4
+  FN                                0          1 +       1
+
+=================================================================
+  3. CONFUSION MATRICES
+=================================================================
+
+  System A — Text-only Baseline
+                         Pred: UNSAFE   Pred: SAFE
+  Actual: UNSAFE              TP = 50       FN = 0  ← missed threats
+  Actual: SAFE                 FP = 4      TN = 46
+
+  System B — Full Fusion Pipeline
+                         Pred: UNSAFE   Pred: SAFE
+  Actual: UNSAFE              TP = 49       FN = 1  ← missed threats
+  Actual: SAFE                 FP = 0      TN = 50
+
+=================================================================
+  4. AGREEMENT ANALYSIS
+=================================================================
+  Total compared  : 100
+  Agree           : 95 (95.0%)
+  Disagree        : 5 (5.0%)
+    • C08_CPY_S03.wav              SysA=Unsafe   SysB=Safe     GT=UNSAFE
+    • S04_CUS_S01.wav              SysA=Unsafe   SysB=Safe     GT=SAFE
+    • S06_ETH_S04.wav              SysA=Unsafe   SysB=Safe     GT=SAFE
+    • S09_TEC_S03.wav              SysA=Unsafe   SysB=Safe     GT=SAFE
+    • S09_TEC_S04.wav              SysA=Unsafe   SysB=Safe     GT=SAFE
+
+=================================================================
+  5. LATENCY COMPARISON (corrected — seconds)
+=================================================================
+
+  Stage                     SysA Mean    SysB Mean   Overhead   SysB Std   SysB%
+  ----------------------------------------------------------------------------
+  ASR Whisper                  22.54s       15.92s     -6.62s      8.18s   41.0%
+  SER SpeechBrain        0.00s (excl.)       22.07s    +22.07s     21.14s   56.8%
+  LLM Qwen3Guard                0.94s        0.84s     -0.10s      0.49s    2.2%
+  ----------------------------------------------------------------------------
+  End-to-End Total             23.48s       38.83s    +15.35s     24.05s  100.0%
+
+  SpeechBrain fusion overhead  : +22.07s per sample (mean)
+  Net latency increase (B vs A) : +15.35s (+65.4% vs System A corrected baseline)
+
+  METHODOLOGY NOTE:
+  System A corrected total = Whisper + Qwen3Guard (tone excluded)
+  System B corrected total = Whisper + SpeechBrain + Qwen3Guard
+  Raw CSV total_seconds excluded — confounded by server-warmup differences.
+
+=================================================================
+  6. MISSED THREATS — SYSTEM A (FN)
+=================================================================
+  None — System A caught all threats.
+
+=================================================================
+  7. MISSED THREATS — SYSTEM B (FN)
+=================================================================
+  • C08_CPY_S03.wav              Transcript: {"text":" Brother, I'm telling you this is the best deal you'll find. One subscription, you get Netf...
+
+=================================================================
+  8. FALSE ALARMS — SYSTEM B (FP)
+=================================================================
+  None — System B generated zero false alarms.
+
+=================================================================
+  9. KEY INSIGHTS
+=================================================================
+  ★ Fusion IMPROVES accuracy by +3.0%
+  ★ Fusion IMPROVES Macro-avg F1 by +3.0%
+  ✓ Zero false alarms in System B — perfect precision on Unsafe class
+  • SpeechBrain fusion adds +22.07s per sample (+65.4% latency overhead)
+    — this is justified by the +3.0% Macro F1 improvement.
+  • Remaining hard cases involve empathetic/ambiguous language
+    (e.g. Suicide & Self-Harm framed as supportive speech).
+  • Future work: dedicated self-harm intent classifiers, ASR error
+    normalization, and real-time streaming integration.
+
+─────────────────────────────────────────────────────────────────
+  END OF REPORT
+─────────────────────────────────────────────────────────────────

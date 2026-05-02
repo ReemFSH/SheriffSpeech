@@ -1,0 +1,39 @@
+# ============================================================
+# SEC619 — LLM-Driven Digital Threat Detection in Spoken Communication
+# Python Requirements
+# ============================================================
+# Install all dependencies:
+#   pip install -r requirements.txt
+# ============================================================
+
+# ── Speech Recognition (ASR) ────────────────────────────────
+openai-whisper>=20231117        # Whisper ASR model
+# Alternative: faster-whisper>=0.10.0  (faster inference, same accuracy)
+
+# ── Speech Emotion Recognition (SER) ────────────────────────
+speechbrain>=1.0.0              # SpeechBrain emotion classification
+
+# ── LLM Guard ───────────────────────────────────────────────
+transformers>=4.40.0            # HuggingFace Transformers (Qwen3Guard)
+torch>=2.0.0                    # PyTorch backend
+accelerate>=0.27.0              # Model acceleration & device mapping
+sentencepiece>=0.1.99           # Tokenizer for Qwen models
+
+# ── Text-to-Speech (TTS) ────────────────────────────────────
+edge-tts>=6.1.9                 # Microsoft Edge TTS (primary TTS engine)
+gTTS>=2.3.2                     # Google TTS (fallback engine)
+pydub>=0.25.1                   # Audio format conversion & processing
+
+# ── Audio Processing ─────────────────────────────────────────
+soundfile>=0.12.1               # WAV file reading/writing
+librosa>=0.10.0                 # Audio analysis & feature extraction
+numpy>=1.24.0                   # Numerical operations
+
+# ── Dataset & Output ─────────────────────────────────────────
+openpyxl>=3.1.2                 # Excel (.xlsx) workbook generation
+pandas>=2.0.0                   # Data manipulation & CSV export
+
+# ── Utilities ────────────────────────────────────────────────
+tqdm>=4.65.0                    # Progress bars
+requests>=2.31.0                # HTTP requests
+aiohttp>=3.9.0                  # Async HTTP (used by edge-tts)
