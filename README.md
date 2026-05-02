@@ -1,4 +1,4 @@
-# 🛡️ SheriffSpeech: LLM-Driven Digital Threat Detection in Spoken Communication
+# 🛡️ SheriffSpeech: LLM-Driven Digital Threat Detection in Voice Communication
 
 > **Graduation Project · KFUPM · Term 242**
 > Reem Fuad Shareef · Supervised by Dr. Waleed Algobi
