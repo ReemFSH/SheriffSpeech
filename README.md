@@ -7,7 +7,7 @@
 
 ## 📌 Project Overview
 
-This project presents an **AI-powered pipeline** that automatically detects unsafe or threatening content in spoken audio. The system transcribes speech, analyzes vocal emotion, and applies a large language model guard to classify audio as **Safe** or **Unsafe** in real time.
+This project presents an **AI-powered pipeline** that automatically detects unsafe or threatening content in spoken audio. The system transcribes speech, analyzes vocal emotion, and applies a large language model (LLM) guard to classify audio as **Safe** or **Unsafe** in real time.
 
 Two systems are evaluated and compared:
 
@@ -227,16 +227,6 @@ Actual: SAFE          FP = 0      TN = 50
 
 ---
 
-## 🔮 Future Work
-
-- Dedicated **self-harm intent classifiers** for ambiguous empathetic speech
-- **ASR error normalization** to handle transcription noise
-- **Real-time streaming** integration for live audio detection
-- Reduce SpeechBrain latency via model distillation or quantization
-- Expand dataset with multilingual and dialect-diverse audio
-
----
-
 ## 🛠️ Technology Stack
 
 | Component | Technology |
@@ -256,7 +246,7 @@ Actual: SAFE          FP = 0      TN = 50
 King Fahd University of Petroleum and Minerals (KFUPM)
 
 **Supervisor:** Dr. Waleed Algobi
-**Course:** SEC619 — Graduation Project · Term 242
+**Course:** SEC619 — Graduation Project
 
 ---
 
